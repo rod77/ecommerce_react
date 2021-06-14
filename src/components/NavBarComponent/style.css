@@ -1,0 +1,9 @@
+.nav {
+  background-color: bisque;
+  text-align: center;
+}
+
+.secciones p {
+  display: inline-block;
+  margin: 10px;
+}
