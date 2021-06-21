@@ -1,4 +1,13 @@
+.unItem {
+  display: inline-block;
+  background-color: #d1d9dc;
+  margin: 10px;
+  padding-right: 10px;
+  border-radius: 5%;
+}
+
 .title_Item {
   font-size: 20px;
-  margin-left: 20px;
+
+  text-align: center;
 }
