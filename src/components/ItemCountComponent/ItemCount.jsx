@@ -17,9 +17,9 @@ export const ItemCountComponent = ({stock, initial, onAdd}) => {
     return (            
         <div className="Item">
             <div className="contador">
-            <button onClick={quitarCantidad} className="contador__resta">-</button>
-            <p className="contador__resultado"> {cant}</p>
-            <button onClick={agregarCantidad} className="contador__suma">+</button>
+                <button onClick={quitarCantidad} className="contador__resta">-</button>
+                <p className="contador__resultado"> {cant}</p>
+                <button onClick={agregarCantidad} className="contador__suma">+</button>
             </div>
             <div className="item_add">
                 <Button onClick={()=>onAdd(cant)} variant="outlined" color="primary">

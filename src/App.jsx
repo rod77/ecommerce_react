@@ -9,9 +9,9 @@ function App() {
 
         <NavBarComponent/>
         
-        <ItemListContainer title={"Un producto"}/>
-        <ItemListContainer title={"Un producto"}/>
-        <ItemListContainer title={"Un producto"}/>
+        <ItemListContainer title={"Productos"}/>
+ 
+  
 
     </div>
   );
