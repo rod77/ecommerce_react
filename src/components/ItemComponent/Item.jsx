@@ -18,13 +18,14 @@ const useStyles = makeStyles({
     },
   });
 
-  const onAdd=(cantidad)=>{
-        
-    cantidad>0?alert(`Has agregado al carrito: ${cantidad} Unidades`):alert(`No puedes agregar 0 unidades`)
-}
+ 
 
 export const ItemComponent = ({id,title, price, pictureURL, descrip}) => {    
     const classes = useStyles();
+    const onAdd=(cantidad)=>{
+        
+      cantidad>0?alert(`Has agregado al carrito: ${cantidad} Unidades`):alert(`No puedes agregar 0 unidades`)
+  }
     return (            
         <div className="Item">
             

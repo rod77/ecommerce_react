@@ -1,0 +1,37 @@
+ [
+        {
+            "id": 1,
+            "title":"Remera River Titular",
+            "price": 6999,
+            "pictureURL":"/img/producto1.jpg",
+            "descripcion": "Camiseta De River Adidas Oficial Blanca"
+        },
+        {   "id": 2,
+            "title":"Remera River Suplente",
+            "price": 5999,
+            "pictureURL":"/img/producto2.jpg",
+            "descripcion": "Camiseta De River Adidas Alternativa Bordo"
+        },
+        {
+            "id": 3,
+            "title":"Campera River Impermeable ",
+            "price": 10555,
+            "pictureURL":"/img/producto3.jpg",
+            "descripcion": "Camiseta De River Adidas Oficial Blanca"
+        },
+		{
+            "id": 4,
+            "title":"Zapatillas Running Adidas",
+            "price": 7999,
+            "pictureURL":"/img/producto4.jpg",
+            "descripcion": "Con estas zapatillas ADIDAS en tus pies podrás correr en el parque y luego tomar un café con amigos con total comodidad."
+        },
+		{
+            "id": 5,
+            "title":"Gorra Reebok Active",
+            "price": 2499,
+            "pictureURL":"/img/producto5.jpg",
+            "descripcion": "Gris/Plata"
+        }
+
+    ]
