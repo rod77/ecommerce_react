@@ -5,6 +5,13 @@
   padding-right: 10px;
   border-radius: 5%;
 }
+.itemAmpliado {
+  background-color: #006386;
+  margin: 10px;
+  padding-right: 10px;
+  border-radius: 5%;
+  text-align: center;
+}
 
 .title_Item {
   font-size: 20px;

@@ -1,5 +1,6 @@
 
-import { ItemListComponent } from "../ItemListComponent/ItemList"; 
+import { ItemListComponent } from "../../components/ItemListComponent/ItemList";  
+import { ItemDetailContainer } from "../ItemDetailContainer/ItemDetail";  
 import { useEffect, useState } from "react";
 import './style.css';
 
@@ -31,10 +32,17 @@ export const ItemListContainer = ({title}) => {
     }
 
     return (
+        <div>
         <div className="unItem">
             
             <p className="title_Item">{title}</p> 
-            <ItemListComponent productos={productos}/>
+            <ItemListComponent productos={productos}/> 
+            
+        </div>
+        <div className="itemAmpliado">            
+            <ItemDetailContainer productos2={productos}/>
+        </div>
+
         </div>
     )
 }
