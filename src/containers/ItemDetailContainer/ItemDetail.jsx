@@ -1,43 +1,36 @@
 
 import { ItemDetailComponent } from "../../components/ItemDetailComponent/ItemDetail"; 
-import { useState } from "react";
+import { useState,useEffect} from "react";
+import { useParams} from "react-router-dom";
 import './style.css';
 
 
-export const ItemDetailContainer = ({productos2}) => {
+export const ItemDetailContainer = () => {
      let [pictureURL, setPictureURL] = useState([]);
      let [title, setTitle] = useState([]);
      let [price, setPrice] = useState([]);
      let [descripcion, setDescripcion] = useState([]);
-  
-     async function getItems(){
-      let value = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          let aux = 1;
-          if (aux >= 1) {
-            resolve(aux)
-          } else {
-            reject("ERROR");
-          }
-        }, 3000)
-      });
-      return value;
-     }    
+     const { idProducto } = useParams();
+       
+    useEffect(() => {
+      
+      const waitForData = async () => {
+        const response = await fetch('/productos.json')
+        const json = await response.json()
+        let aux = json.filter(element=>element.id==idProducto)
 
-     getItems().then(result => { 
-      setPictureURL(productos2[0].pictureURL);
-      setTitle(productos2[0].title);
-      setPrice(productos2[0].price);
-      setDescripcion(productos2[0].descripcion);
-
-    }).catch(error=> {
-      console.log(error)
-    })
-
-
+        setPictureURL(aux[0].pictureURL)
+        setTitle(aux[0].title)
+        setPrice(aux[0].price)
+        setDescripcion(aux[0].descripcion)
+      }
+      waitForData()
+  }, [idProducto])
+     
     return (
         <div className="unItem">           
-            <ItemDetailComponent pictureURL={pictureURL} title={title}  price={price}  descripcion={descripcion}/>   
+            {/* s */}
+             <ItemDetailComponent pictureURL={pictureURL} title={title}  price={price}  descripcion={descripcion}/> 
         </div>
     )
 }

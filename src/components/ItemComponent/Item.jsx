@@ -6,9 +6,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-
-import { makeStyles } from '@material-ui/core/styles';
-import { ItemCountComponent } from '../ItemCountComponent/ItemCount';
+import {NavLink} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'; 
 const useStyles = makeStyles({
     root: {
       width: 200,
@@ -20,22 +19,21 @@ const useStyles = makeStyles({
 
  
 
-export const ItemComponent = ({id,title, price, pictureURL, descrip}) => {    
+export const ItemComponent = ({idProducto,title, price, pictureURL, descrip}) => {    
     const classes = useStyles();
-    const onAdd=(cantidad)=>{
-        
-      cantidad>0?alert(`Has agregado al carrito: ${cantidad} Unidades`):alert(`No puedes agregar 0 unidades`)
-  }
+    
     return (            
         <div className="Item">
             
         <Card className={classes.root}>
         <CardActionArea>
+        <NavLink to={`/item/${idProducto}`}>
         <CardMedia
           className={classes.media}
           image={pictureURL}
-          title="Contemplative Reptile"
+          title={title}
         />
+        </NavLink>
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
            {title}
@@ -45,9 +43,8 @@ export const ItemComponent = ({id,title, price, pictureURL, descrip}) => {
         </Typography>
 
         </CardContent>
-        </CardActionArea>
-        <ItemCountComponent  stock={5} initial={1} onAdd={onAdd}/>
-    </Card>
+        </CardActionArea> 
+        </Card>
 
         </div>
     );
