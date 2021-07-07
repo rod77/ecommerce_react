@@ -6,6 +6,7 @@ import './style.css';
 
 
 export const ItemDetailContainer = () => {
+     let [id, setId] = useState([]);
      let [pictureURL, setPictureURL] = useState([]);
      let [title, setTitle] = useState([]);
      let [price, setPrice] = useState([]);
@@ -19,6 +20,7 @@ export const ItemDetailContainer = () => {
         const json = await response.json()
         let aux = json.filter(element=>element.id==idProducto)
 
+        setId(aux[0].id)
         setPictureURL(aux[0].pictureURL)
         setTitle(aux[0].title)
         setPrice(aux[0].price)
@@ -29,8 +31,8 @@ export const ItemDetailContainer = () => {
      
     return (
         <div className="unItem">           
-            {/* s */}
-             <ItemDetailComponent pictureURL={pictureURL} title={title}  price={price}  descripcion={descripcion}/> 
+          
+             <ItemDetailComponent id={id} pictureURL={pictureURL} title={title}  price={price}  descripcion={descripcion}/> 
         </div>
     )
 }
