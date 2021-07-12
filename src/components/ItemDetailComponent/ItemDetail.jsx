@@ -3,17 +3,25 @@ import { ItemCountComponent } from '../ItemCountComponent/ItemCount';
 import {  useState } from "react";
 import Button from '@material-ui/core/Button';
 import {NavLink} from 'react-router-dom'
+import { CartContext } from '../../context/CartContext';
+import { useContext } from 'react';
+
+
 export const ItemDetailComponent = ({id, pictureURL, title, price, descripcion}) => { 
     let [carrito, setCarrito] = useState([]);
     let [count, setCount] = useState(0);
 
-    const onAdd=(cantidad)=>{
-        let aux = {
-            idProducto: id,
-            cant: cantidad
-        }
-        setCount(count+1)
-        setCarrito(aux)  
+    const context = useContext(CartContext);
+
+    const onAdd=(quantity)=>{
+        // let aux = {
+        //     idProducto: id,
+        //     cant: cantidad
+        // }
+        // setCount(count+1)
+        // setCarrito(aux) 
+        
+        context.addItem({id,pictureURL, title, price, descripcion}, quantity)
     }
 
   
