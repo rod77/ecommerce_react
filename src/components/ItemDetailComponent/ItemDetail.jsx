@@ -14,17 +14,11 @@ export const ItemDetailComponent = ({id, pictureURL, title, price, descripcion})
     const context = useContext(CartContext);
 
     const onAdd=(quantity)=>{
-        // let aux = {
-        //     idProducto: id,
-        //     cant: cantidad
-        // }
-        // setCount(count+1)
-        // setCarrito(aux) 
-        
+
+        setCount(count+1)
         context.addItem({id,pictureURL, title, price, descripcion}, quantity)
     }
 
-  
 
     return (            
         <div className="idc_cuerpo">   

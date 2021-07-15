@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { createContext, useState } from 'react';
 const CartContext = createContext();
 
@@ -15,6 +16,7 @@ function CartProvider({ defaultValue = [], children }) {
             setCart([...cart,{item: item,quantity: quantity}])
         }
         console.log(cart)
+        console.log(cantTotal());
     }
 
     //Modifico la cantidad
@@ -39,7 +41,7 @@ function CartProvider({ defaultValue = [], children }) {
     const removeItem = (itemId) => {
         let posRemove = posInCart(itemId)
         let cartAux = cart
-        cartAux.slice(posRemove,1)
+        cartAux.splice(posRemove,1)
         setCart(cartAux)
     }
     
@@ -48,9 +50,19 @@ function CartProvider({ defaultValue = [], children }) {
         setCart([])
     }
 
+    const cantTotal = ()=>{
+        let acum=0
+        for (let index = 0; index < cart.length; index++) {            
+            acum=acum+cart[index].quantity;            
+        }
+        return acum
+    }
+    useEffect(()=>{
+        
+    })
 
     return (
-        <CartContext.Provider value={{ cart, setCart, addItem, removeItem, clear }}>
+        <CartContext.Provider value={{ cart, setCart, addItem, removeItem, clear,cantTotal }}>
             {children}
         </CartContext.Provider>
     );

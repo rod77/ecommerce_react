@@ -1,0 +1,28 @@
+.oculto {
+  display: none;
+}
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartVacio {
+  color: red;
+  text-align: center;
+}
+
+.cart__item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.cart__item__img {
+  height: 200px;
+}
+
+.cart__item__title {
+  display: inline-block;
+}

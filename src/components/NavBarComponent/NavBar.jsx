@@ -13,7 +13,8 @@ export const NavBarComponent = () => {
           
         </IconButton>
         <Typography variant="h6">
-        <NavLink to={`/`} className="unLink">
+        
+        <NavLink to={`/cart`} className="unLink">
               <CartWidgetComponent />
         </NavLink>
         </Typography>
