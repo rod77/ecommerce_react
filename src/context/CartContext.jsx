@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
-import { createContext, useState } from 'react';
+import { createContext, useState,useEffect } from 'react';
 const CartContext = createContext();
 
 function CartProvider({ defaultValue = [], children }) {
     const [cart, setCart] = useState([]);
+    const [cantidad, setCantidad] = useState(0);
+    const [precio, setPrecio] = useState(0);
 
     //agregar cierta cantidad de un ítem al carrito
     const addItem = (item, quantity) => {
@@ -15,17 +16,37 @@ function CartProvider({ defaultValue = [], children }) {
             :
             setCart([...cart,{item: item,quantity: quantity}])
         }
-        console.log(cart)
-        console.log(cantTotal());
+        actualizoCantidad()
+        actualizoPrecio()
     }
-
+    
     //Modifico la cantidad
     const updateCart = (id,quantity) =>{
-         let posUpdate = posInCart(id)
-         let cartAux = cart         
-        cartAux[posUpdate].quantity+=quantity
-        setCart(cartAux)
-    }
+        let posUpdate = posInCart(id)
+        let cartAux = cart         
+       cartAux[posUpdate].quantity+=quantity
+       setCart(cartAux)
+       actualizoCantidad()
+       actualizoPrecio()
+   }
+
+        //Remover un item del cart por usando su id
+        const removeItem = (itemId) => {
+            let posRemove = posInCart(itemId)
+            let cartAux = cart
+            cartAux.splice(posRemove,1)
+            setCart(cartAux)
+            actualizoCantidad()
+            actualizoPrecio()
+        }
+        
+   //Vacio el carrito
+   const clear = () =>{
+    setCart([])
+    setCantidad(0)
+    setPrecio(0)
+}
+    
     
     //Verifica si Existe en el carrito, devuelve false/true
     const isInCart =(id) =>{
@@ -37,32 +58,32 @@ function CartProvider({ defaultValue = [], children }) {
         return cart.findIndex(element=>element.item.id==id)
     }
 
-    //Remover un item del cart por usando su id
-    const removeItem = (itemId) => {
-        let posRemove = posInCart(itemId)
-        let cartAux = cart
-        cartAux.splice(posRemove,1)
-        setCart(cartAux)
+    const cantTotal = ()=>{
+         return cantidad
     }
     
-    //Vacio el carrito
-    const clear = () =>{
-        setCart([])
+    const actualizoCantidad = () => {
+        let total = cart.reduce((acc, cur) => {
+            return cur.quantity + acc
+        }, 0); 
+        setCantidad(total)
     }
 
-    const cantTotal = ()=>{
-        let acum=0
-        for (let index = 0; index < cart.length; index++) {            
-            acum=acum+cart[index].quantity;            
-        }
-        return acum
+    const actualizoPrecio = () => {
+        let total = cart.reduce((acc, cur) => {
+            return (cur.item.price * cur.quantity) + acc
+        }, 0);
+        setPrecio(total);
     }
-    useEffect(()=>{
-        
-    })
+
+    useEffect(() => {
+        actualizoCantidad();
+        actualizoPrecio();
+    });
+
 
     return (
-        <CartContext.Provider value={{ cart, setCart, addItem, removeItem, clear,cantTotal }}>
+        <CartContext.Provider value={{ cart, cantidad, precio, addItem,updateCart,removeItem,clear,isInCart,posInCart,cantTotal,actualizoCantidad,actualizoPrecio,setCart,setPrecio,setCantidad }}>
             {children}
         </CartContext.Provider>
     );

@@ -15,7 +15,7 @@ export const ItemDetailComponent = ({id, pictureURL, title, price, descripcion})
 
     const onAdd=(quantity)=>{
 
-        setCount(count+1)
+       // setCount(count+1)
         context.addItem({id,pictureURL, title, price, descripcion}, quantity)
     }
 
