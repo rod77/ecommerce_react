@@ -4,50 +4,54 @@ import { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
 import './style.css'; 
 
+import { getFirestore } from '../../firebase';
 
 export const ItemListContainer = () => {
     let [productos, setProductos] = useState([]);
+    let [items, setItems] = useState([]);
     let [title, setTitle] = useState([]);
     const { idCategory } = useParams();
-    useEffect(() => {
-        const waitForData = async () => {
-            let data = await getData();
-            let aux = data.map(element => {
-                return{
-                    id: element.id,
-                    title: element.title,
-                    price: element.price,
-                    pictureURL: element.pictureURL,
-                    descripcion: element.descripcion,
-                    category: element.category
-                }
-            }) 
+
+    const getAll = () => {
+        const db = getFirestore(); //inicializo el cliente
+        const itemsCollection = db.collection('productos');//seteo coleccion
+        itemsCollection.get().then((querySnapshot) => {
+            if (querySnapshot.size === 0) {
+                console.log('No results');
+            }
+            let snapshot = querySnapshot.docs.map(doc => {
+                return { ...doc.data(), id: doc.id }
+            }); 
+
             let auxCategory
             if (idCategory!==undefined){
-                auxCategory = aux.filter(element=>element.category==idCategory)
+                auxCategory = snapshot.filter(element=>element.category==idCategory)
                 setTitle(idCategory)
             }
             else {
-                auxCategory = aux
+                auxCategory = snapshot
                 setTitle("Todos")
             }
-            setProductos(auxCategory); 
-        }
-        waitForData();                
-    }, [idCategory])
+            setItems(auxCategory); 
+            
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
 
-    async function getData(){
-        const response = await fetch('/data/productos.json')
-        const data = await response.json()
-        return data
-    }
+
+    };
+    
+    
+    useEffect(() => {
+        getAll(); 
+    }, [idCategory]);
 
     return (
         <div>
         <div className="unItem">
             
             <p className="title_Item">Productos: {title}</p> 
-            <ItemListComponent productos={productos}/> 
+            <ItemListComponent productos={items}/> 
             
         </div>
         <div className="itemAmpliado">            
