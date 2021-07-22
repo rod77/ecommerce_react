@@ -26,3 +26,11 @@
 .cart__item__title {
   display: inline-block;
 }
+
+.unLink:visited {
+  text-decoration: none;
+}
+
+.unLink:link {
+  text-decoration: none;
+}

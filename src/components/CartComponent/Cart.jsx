@@ -2,6 +2,7 @@ import './style.css';
 import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react'; 
 import {NavLink} from 'react-router-dom'
+import { Button } from '@material-ui/core';
 
 export const CartComponent = () => {    
     const context = useContext(CartContext); 
@@ -34,6 +35,7 @@ export const CartComponent = () => {
                             <button onClick={() => eliminarItem(element.item.id)}>🗑️</button>
                         </div>
                     </li>                
+                    <NavLink to={`/checkout`} className="unLink"><Button variant="contained" color="secondary">Ir a pagar</Button></NavLink>
                 </div>)})}
             </ul>
             
